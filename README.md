@@ -8,6 +8,8 @@ Provide a working solution of the test via Pull Request
 
 ## Screens:
 
+![iosLayout.png](http://i.imgur.com/Uce24Q4.png)
+
 1. A list with the USA new releases. Each item should display:
 
   * image
