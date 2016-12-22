@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		24412E9AD3182D14B8AB4D8B /* Pods_eSharesChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EF8646B08057F32D4ED3221 /* Pods_eSharesChallengeUITests.framework */; };
+		B906D9BB1E0A069D00B83056 /* SpotifyBaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B906D9BA1E0A069D00B83056 /* SpotifyBaseRequest.swift */; };
+		B9950A1D1E0B23900052839E /* AuthorizeSpotifyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9950A1C1E0B23900052839E /* AuthorizeSpotifyRequest.swift */; };
+		B9950A1F1E0B3A200052839E /* NewReleasesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9950A1E1E0B3A200052839E /* NewReleasesTableViewController.swift */; };
 		B9AA3A501E09ED2200CB81B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AA3A4F1E09ED2200CB81B8 /* AppDelegate.swift */; };
 		B9AA3A551E09ED2200CB81B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9AA3A531E09ED2200CB81B8 /* Main.storyboard */; };
 		B9AA3A571E09ED2200CB81B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9AA3A561E09ED2200CB81B8 /* Assets.xcassets */; };
@@ -44,6 +47,9 @@
 		5A57E90DF25F1861B975F0D8 /* Pods_eSharesChallengeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eSharesChallengeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88DF7BAF438765F730EB31B0 /* Pods_eSharesChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eSharesChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		931E514E423E5E4440C12C5C /* Pods-eSharesChallengeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eSharesChallengeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-eSharesChallengeUITests/Pods-eSharesChallengeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B906D9BA1E0A069D00B83056 /* SpotifyBaseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyBaseRequest.swift; sourceTree = "<group>"; };
+		B9950A1C1E0B23900052839E /* AuthorizeSpotifyRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizeSpotifyRequest.swift; sourceTree = "<group>"; };
+		B9950A1E1E0B3A200052839E /* NewReleasesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewReleasesTableViewController.swift; sourceTree = "<group>"; };
 		B9AA3A4C1E09ED2200CB81B8 /* eSharesChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eSharesChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9AA3A4F1E09ED2200CB81B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9AA3A541E09ED2200CB81B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -110,6 +116,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B906D9B91E0A05B900B83056 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				B906D9BA1E0A069D00B83056 /* SpotifyBaseRequest.swift */,
+				B9950A1C1E0B23900052839E /* AuthorizeSpotifyRequest.swift */,
+			);
+			name = Requests;
+			sourceTree = "<group>";
+		};
 		B9AA3A431E09ED2100CB81B8 = {
 			isa = PBXGroup;
 			children = (
@@ -135,11 +150,13 @@
 		B9AA3A4E1E09ED2200CB81B8 /* eSharesChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				B906D9B91E0A05B900B83056 /* Requests */,
 				B9AA3A4F1E09ED2200CB81B8 /* AppDelegate.swift */,
 				B9AA3A531E09ED2200CB81B8 /* Main.storyboard */,
 				B9AA3A561E09ED2200CB81B8 /* Assets.xcassets */,
 				B9AA3A581E09ED2200CB81B8 /* LaunchScreen.storyboard */,
 				B9AA3A5B1E09ED2200CB81B8 /* Info.plist */,
+				B9950A1E1E0B3A200052839E /* NewReleasesTableViewController.swift */,
 			);
 			path = eSharesChallenge;
 			sourceTree = "<group>";
@@ -446,7 +463,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9950A1F1E0B3A200052839E /* NewReleasesTableViewController.swift in Sources */,
 				B9AA3A501E09ED2200CB81B8 /* AppDelegate.swift in Sources */,
+				B9950A1D1E0B23900052839E /* AuthorizeSpotifyRequest.swift in Sources */,
+				B906D9BB1E0A069D00B83056 /* SpotifyBaseRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +620,14 @@
 				DEVELOPMENT_TEAM = U4ZPUQR8GQ;
 				INFOPLIST_FILE = eSharesChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.solechang.eSharesChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -614,6 +642,14 @@
 				DEVELOPMENT_TEAM = U4ZPUQR8GQ;
 				INFOPLIST_FILE = eSharesChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.solechang.eSharesChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;

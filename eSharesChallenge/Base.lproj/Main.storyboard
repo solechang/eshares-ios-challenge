@@ -6,10 +6,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--New Releases-->
         <scene sceneID="oCU-zl-U87">
             <objects>
-                <tableViewController id="wk3-qe-UEZ" sceneMemberID="viewController">
+                <tableViewController id="wk3-qe-UEZ" customClass="NewReleasesTableViewController" customModule="eSharesChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="J0a-sP-a7C">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UhD-jk-rb6" id="gup-7H-eiy">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -29,7 +29,7 @@
                             <outlet property="delegate" destination="wk3-qe-UEZ" id="2jB-c0-UNU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Krn-kE-CX5"/>
+                    <navigationItem key="navigationItem" title="New Releases" id="Krn-kE-CX5"/>
                     <connections>
                         <segue destination="rjb-db-age" kind="show" identifier="songDetailsSegue" id="Hbb-Eg-UKf"/>
                     </connections>
