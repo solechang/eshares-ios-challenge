@@ -15,56 +15,132 @@ class NewReleasesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let notificationName = Notification.Name("spotifyNotificationIdentifier")
+//        let notificationName = Notification.Name("spotifyNotificationIdentifier")
+//        
+//        // Register to receive notification
+//        NotificationCenter.default.addObserver(self, selector: #selector(NewReleasesTableViewController.getSpotifyCode), name: notificationName, object: nil)
+//        
+//
+//        let url = "https://accounts.spotify.com/authorize/?client_id=2749e2f97b65434a86f0054d51f2303b&response_type=code&redirect_uri=eshareschallenge://returnAfterLogin&scope=user-read-private%20user-read-email";
+//   
+//        if let url = URL(string: url) {
+//            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//        }
         
-        // Register to receive notification
-        NotificationCenter.default.addObserver(self, selector: #selector(NewReleasesTableViewController.getSpotifyCode), name: notificationName, object: nil)
         
-
-        let url = "https://accounts.spotify.com/authorize/?client_id=2749e2f97b65434a86f0054d51f2303b&response_type=code&redirect_uri=eshareschallenge://returnAfterLogin&scope=user-read-private%20user-read-email&state=34fFs29kd09";
-   
-        if let url = URL(string: url) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
-        
-        
+        self.getSpotifyCode()
     }
     
-    func getSpotifyCode(notification: NSNotification) {
-    let dict = notification.object as! NSDictionary
+    func getSpotifyCode() {
+ 
+//        let dict = notification.object as! NSDictionary
+        
+//        let receivedCode = dict["code"] // code from Spotify
+        
 
-    let receivedCode = dict["code"]
+
+        
+        let clientId = "2749e2f97b65434a86f0054d51f2303b"
+        let clientSecret = "0ed59725d79240d3910cfba50d44d545"
+        
+        let authBase = "\(clientId):\(clientSecret)"
+        
+        let data = (authBase).data(using: String.Encoding.utf8)
+        let base64 = data!.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
         
         
-        
-        let params =  ["grant_type":"authorization_code",
-                       "code" : receivedCode!,
-                       "redirect_uri" : "eshareschallenge://returnAfterLogin",
-                       "client_secret":"fc19c3d4fc814c4a9f0948087920b8b5" ,
-                       "client_id": "2749e2f97b65434a86f0054d51f2303b",
-                       ]
-        
-        
-        print("13.0) ", params)
-        
-        Alamofire.request("https://accounts.spotify.com/api/token", method: .post, parameters:params, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            
-            switch(response.result) {
-            case .success(_):
-//                if let data = response.result.value{
-                    print("11.0) " ,response.result.value)
-//                }
-                break
+        Alamofire.request("https://accounts.spotify.com/api/token",
+                          method: .post,
+                          parameters: ["grant_type" : "client_credentials"],
+                          encoding: URLEncoding.default,
+                          headers: ["Authorization" : "Basic \(base64)"])
+            .responseJSON { (response:DataResponse<Any>) in
                 
-            case .failure(_):
-                print("11.1) " ,response.result.error)
-                break
-                
-            }
+                switch(response.result) {
+                case .success(_):
+                    
+                    if let result = response.result.value {
+                        let accessToken = result as! NSDictionary
+                        
+                        print("1.) ", accessToken["access_token"])
+                        self.getNewReleases(accessToken: accessToken["access_token"] as! String)
+                    }
+                    
+                    
+                    break
+                    
+                case .failure(_):
+                    print(response.result.error)
+                    break
+                }
         }
+    
+    }
+    
+    func getNewReleases( accessToken :String) {
         
+        Alamofire.request("https://api.spotify.com/v1/browse/new-releases",
+                          method: .get,
+                          parameters: [:],
+                          encoding: URLEncoding.default,
+                          headers: ["Authorization" : "Bearer \(accessToken)"])
+            .responseJSON { (response:DataResponse<Any>) in
+                
+                switch(response.result) {
+                case .success(_):
+                    
+                    if let result = response.result.value {
+                        let data = result as! NSDictionary
+                        
+                        let albums = data["albums"]  as! NSDictionary
+                        
+//                        let items = albums["items"]  as! NSArray
+                        
+                        if let items = albums["items"] as? [[String:Any]] {
+                            
+                            
+                            for item in items {
+                                
+                                // Extracting meme data
+                                let track = Track()
+                                
+                                track.trackName = item["name"] as! String
+                                
+                                let artists = item["artists"]  as! NSArray
+                                let artist = artists[0] as? NSDictionary
+                                track.artistName = artist?["name"] as! String
+                                
+                                
+                                
+                                
+//                                track.img = item["width"] as! String
+                                
+                                
+                                
+                            }
+                            
+                            print("2.) ", items)
+
+                            
+                        }
+                        
+                        
+                    }
+                    
+                    
+                    break
+                    
+                case .failure(_):
+                    print("2.0) ", response.result.error)
+                    break
+                }
+        }
+
         
     }
+
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

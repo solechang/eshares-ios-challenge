@@ -69,21 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-//    func application(app: UIApplication, openURL url: URL, options: [String : AnyObject]) -> Bool {
-//        
-//        print("10.0) app: \(app)")
-//        // print OAuth response URL
-//        print("10.1) url: \(url)")
-//        print("10.2) options: \(options)")
-//        
-////        if let sourceApplication = options["UIApplicationOpenURLOptionsSourceApplicationKey"] {
-////            if (String(sourceApplication) == "com.testApp.Incognito") {
-////                NSNotificationCenter.defaultCenter().postNotificationName(kSafariViewControllerCloseNotification, object: url)
-////                return true
-////            }
-////        }
-//        return true
-//    }
+
 
 
 }
