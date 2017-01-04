@@ -17,11 +17,15 @@ class NewReleasesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        // Navigationbar text color
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
+        
         self.getSpotifyAuth()
     }
     
     func getSpotifyAuth() {
-        
         
         let clientId = "2749e2f97b65434a86f0054d51f2303b"
         let clientSecret = "0ed59725d79240d3910cfba50d44d545"

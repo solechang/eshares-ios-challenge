@@ -13,12 +13,12 @@
             <objects>
                 <tableViewController id="wk3-qe-UEZ" customClass="NewReleasesTableViewController" customModule="eSharesChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="28" sectionFooterHeight="28" id="J0a-sP-a7C">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="trackCell" rowHeight="65" id="UhD-jk-rb6" customClass="TrackTableViewCell" customModule="eSharesChallenge" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="320" height="65"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UhD-jk-rb6" id="gup-7H-eiy">
                                     <frame key="frameInset" width="320" height="64"/>
@@ -83,7 +83,7 @@
                         <viewControllerLayoutGuide type="bottom" id="HfC-vs-zSf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="YSY-D2-Mqh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f32-N8-6L7">
@@ -102,11 +102,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="td5-rI-SsT">
-                                <color key="backgroundColor" red="0.012105963859120883" green="1" blue="0.34632366165610007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.84279822335025378" blue="0.3390457998575479" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="5e6-oJ-Q5V"/>
                                     <constraint firstAttribute="width" constant="198" id="hLg-Ei-I34"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <state key="normal" title="Open In Spotify">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -148,9 +149,13 @@
         <scene sceneID="8cn-rQ-ADO">
             <objects>
                 <navigationController id="Cd6-OK-oxN" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2fr-QC-1Fx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="2fr-QC-1Fx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="wk3-qe-UEZ" kind="relationship" relationship="rootViewController" id="3wn-Si-HJ5"/>

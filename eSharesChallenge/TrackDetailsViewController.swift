@@ -40,6 +40,10 @@ class TrackDetailsViewController: UIViewController {
             downloadImage(url: checkedUrl, trackImageView: self.trackImageView)
         }
         
+        // Navigationbar text color
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
+        self.navigationController?.navigationBar.tintColor = UIColor.white
     }
     
     func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
