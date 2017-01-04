@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,15 +13,15 @@
             <objects>
                 <tableViewController id="wk3-qe-UEZ" customClass="NewReleasesTableViewController" customModule="eSharesChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="28" sectionFooterHeight="28" id="J0a-sP-a7C">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="trackCell" rowHeight="65" id="UhD-jk-rb6" customClass="TrackTableViewCell" customModule="eSharesChallenge" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="65"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UhD-jk-rb6" id="gup-7H-eiy">
-                                    <frame key="frameInset" width="375" height="64"/>
+                                    <frame key="frameInset" width="320" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Usw-Ge-ie6">
@@ -52,6 +53,11 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="artistNameLabel" destination="3aC-GJ-aQI" id="4CX-wL-lK3"/>
+                                    <outlet property="trackImageView" destination="Usw-Ge-ie6" id="0tt-EC-YeH"/>
+                                    <outlet property="trackNameLabel" destination="kYh-Dm-7kO" id="gFA-3x-TtC"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -61,30 +67,82 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="New Releases" id="Krn-kE-CX5"/>
                     <connections>
-                        <segue destination="rjb-db-age" kind="show" identifier="songDetailsSegue" id="Hbb-Eg-UKf"/>
+                        <segue destination="rjb-db-age" kind="show" identifier="trackDetailsSegue" id="Hbb-Eg-UKf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ync-RT-oe6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="96.799999999999997" y="8.5457271364317844"/>
         </scene>
-        <!--View Controller-->
+        <!--Track Details View Controller-->
         <scene sceneID="pDt-Rl-sYd">
             <objects>
-                <viewController id="rjb-db-age" sceneMemberID="viewController">
+                <viewController id="rjb-db-age" customClass="TrackDetailsViewController" customModule="eSharesChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XDZ-Sc-gQN"/>
                         <viewControllerLayoutGuide type="bottom" id="HfC-vs-zSf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="YSY-D2-Mqh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f32-N8-6L7">
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="f32-N8-6L7" secondAttribute="height" id="xnH-73-9PC"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMD-mT-RPV">
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ht-Ba-U7f">
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="td5-rI-SsT">
+                                <color key="backgroundColor" red="0.012105963859120883" green="1" blue="0.34632366165610007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="5e6-oJ-Q5V"/>
+                                    <constraint firstAttribute="width" constant="198" id="hLg-Ei-I34"/>
+                                </constraints>
+                                <state key="normal" title="Open In Spotify">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="spotifyButtonPressed:" destination="rjb-db-age" eventType="touchUpInside" id="ZX6-IZ-49B"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="td5-rI-SsT" firstAttribute="centerX" secondItem="f32-N8-6L7" secondAttribute="centerX" id="Iux-2t-WAm"/>
+                            <constraint firstItem="f32-N8-6L7" firstAttribute="width" secondItem="YSY-D2-Mqh" secondAttribute="width" id="LZ8-EP-HV4"/>
+                            <constraint firstItem="7ht-Ba-U7f" firstAttribute="top" secondItem="VMD-mT-RPV" secondAttribute="bottom" constant="7" id="QoN-nF-tsl"/>
+                            <constraint firstItem="VMD-mT-RPV" firstAttribute="centerX" secondItem="YSY-D2-Mqh" secondAttribute="centerX" id="TuO-bI-MWS"/>
+                            <constraint firstItem="VMD-mT-RPV" firstAttribute="leading" secondItem="YSY-D2-Mqh" secondAttribute="leadingMargin" constant="30" id="VwH-8h-Tl1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VMD-mT-RPV" secondAttribute="trailing" constant="30" id="XcE-XZ-tHg"/>
+                            <constraint firstItem="f32-N8-6L7" firstAttribute="top" secondItem="XDZ-Sc-gQN" secondAttribute="bottom" id="Zju-g3-C5N"/>
+                            <constraint firstItem="f32-N8-6L7" firstAttribute="centerX" secondItem="YSY-D2-Mqh" secondAttribute="centerX" id="bN8-PU-IZF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7ht-Ba-U7f" secondAttribute="trailing" constant="30" id="bav-96-gnV"/>
+                            <constraint firstItem="7ht-Ba-U7f" firstAttribute="leading" secondItem="YSY-D2-Mqh" secondAttribute="leadingMargin" constant="30" id="hzp-ah-gNE"/>
+                            <constraint firstItem="7ht-Ba-U7f" firstAttribute="centerX" secondItem="YSY-D2-Mqh" secondAttribute="centerX" id="j27-l8-F87"/>
+                            <constraint firstItem="VMD-mT-RPV" firstAttribute="top" secondItem="td5-rI-SsT" secondAttribute="bottom" constant="17" id="jRG-8I-fj0"/>
+                            <constraint firstItem="td5-rI-SsT" firstAttribute="bottom" secondItem="f32-N8-6L7" secondAttribute="bottom" constant="15" id="kUN-xo-TJk"/>
+                            <constraint firstItem="HfC-vs-zSf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="7ht-Ba-U7f" secondAttribute="bottom" constant="15" id="rcE-PS-9Cw"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="artistNameLabel" destination="7ht-Ba-U7f" id="dlI-O2-vev"/>
+                        <outlet property="songNameLabel" destination="VMD-mT-RPV" id="fJz-at-J6J"/>
+                        <outlet property="spotifyButton" destination="td5-rI-SsT" id="y0C-WP-bcQ"/>
+                        <outlet property="trackImageView" destination="f32-N8-6L7" id="8bM-fw-nQy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tS9-3P-35D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1098" y="-21"/>
+            <point key="canvasLocation" x="856.875" y="7.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8cn-rQ-ADO">

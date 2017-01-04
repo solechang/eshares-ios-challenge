@@ -10,6 +10,10 @@ import UIKit
 
 class TrackTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var trackImageView: UIImageView!
+    @IBOutlet weak var trackNameLabel: UILabel!
+    @IBOutlet weak var artistNameLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

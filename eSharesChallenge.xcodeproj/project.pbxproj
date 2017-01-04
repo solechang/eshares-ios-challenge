@@ -17,6 +17,7 @@
 		B9AA3A701E09ED2200CB81B8 /* eSharesChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AA3A6F1E09ED2200CB81B8 /* eSharesChallengeUITests.swift */; };
 		B9D41B311E1C4A8F007CEBA4 /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D41B301E1C4A8F007CEBA4 /* TrackTableViewCell.swift */; };
 		B9D41B331E1C4EE3007CEBA4 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D41B321E1C4EE3007CEBA4 /* Track.swift */; };
+		B9D41B351E1C7BD1007CEBA4 /* TrackDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D41B341E1C7BD1007CEBA4 /* TrackDetailsViewController.swift */; };
 		BECED623083F903F0D270932 /* Pods_eSharesChallengeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A57E90DF25F1861B975F0D8 /* Pods_eSharesChallengeTests.framework */; };
 		F2194E614270BFA058415205 /* Pods_eSharesChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88DF7BAF438765F730EB31B0 /* Pods_eSharesChallenge.framework */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 		B9AA3A711E09ED2200CB81B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9D41B301E1C4A8F007CEBA4 /* TrackTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
 		B9D41B321E1C4EE3007CEBA4 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		B9D41B341E1C7BD1007CEBA4 /* TrackDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackDetailsViewController.swift; sourceTree = "<group>"; };
 		E461565FE3B47E07CE0E6B0C /* Pods-eSharesChallengeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eSharesChallengeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-eSharesChallengeTests/Pods-eSharesChallengeTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,14 +143,14 @@
 		B9AA3A4E1E09ED2200CB81B8 /* eSharesChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				B9D41B381E1C9393007CEBA4 /* Cells */,
+				B9D41B371E1C9388007CEBA4 /* Model */,
+				B9D41B361E1C936E007CEBA4 /* ViewControllers */,
 				B9AA3A4F1E09ED2200CB81B8 /* AppDelegate.swift */,
 				B9AA3A531E09ED2200CB81B8 /* Main.storyboard */,
 				B9AA3A561E09ED2200CB81B8 /* Assets.xcassets */,
 				B9AA3A581E09ED2200CB81B8 /* LaunchScreen.storyboard */,
 				B9AA3A5B1E09ED2200CB81B8 /* Info.plist */,
-				B9950A1E1E0B3A200052839E /* NewReleasesTableViewController.swift */,
-				B9D41B301E1C4A8F007CEBA4 /* TrackTableViewCell.swift */,
-				B9D41B321E1C4EE3007CEBA4 /* Track.swift */,
 			);
 			path = eSharesChallenge;
 			sourceTree = "<group>";
@@ -169,6 +171,31 @@
 				B9AA3A711E09ED2200CB81B8 /* Info.plist */,
 			);
 			path = eSharesChallengeUITests;
+			sourceTree = "<group>";
+		};
+		B9D41B361E1C936E007CEBA4 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B9950A1E1E0B3A200052839E /* NewReleasesTableViewController.swift */,
+				B9D41B341E1C7BD1007CEBA4 /* TrackDetailsViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B9D41B371E1C9388007CEBA4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B9D41B321E1C4EE3007CEBA4 /* Track.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		B9D41B381E1C9393007CEBA4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B9D41B301E1C4A8F007CEBA4 /* TrackTableViewCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -457,6 +484,7 @@
 			files = (
 				B9950A1F1E0B3A200052839E /* NewReleasesTableViewController.swift in Sources */,
 				B9D41B311E1C4A8F007CEBA4 /* TrackTableViewCell.swift in Sources */,
+				B9D41B351E1C7BD1007CEBA4 /* TrackDetailsViewController.swift in Sources */,
 				B9AA3A501E09ED2200CB81B8 /* AppDelegate.swift in Sources */,
 				B9D41B331E1C4EE3007CEBA4 /* Track.swift in Sources */,
 			);
@@ -531,6 +559,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -580,6 +609,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

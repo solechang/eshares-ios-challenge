@@ -41,36 +41,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
-        
-        print("10.0) app: \(application)")
-                // print OAuth response URL
-                print("10.1) url: \(url)")
-//                print("10.2) options: \(options)")
-        
-        
-        var urlString = url.absoluteString
-        
-        if let extractCode = urlString.components(separatedBy: "code=").last {
-            print("10.2) ", extractCode)
-            urlString = extractCode
-        }
-        
-        if let code = urlString.components(separatedBy: "&state=").first {
-            print("10.3) ", code)
-            urlString = code
-        }
-        
-        
-        let myCode = [ "code": urlString]
-
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "spotifyNotificationIdentifier"), object:myCode);
-        // Here we dismiss the SFSafariViewController
-        return true
-    }
-    
-
-
-
 }
 

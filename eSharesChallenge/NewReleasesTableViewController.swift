@@ -11,34 +11,18 @@ import Alamofire
 import SwiftyJSON
 
 class NewReleasesTableViewController: UITableViewController {
+    
+    var tracksArray: [Track] = []
+    var selectedTrack: Track? = nil
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let notificationName = Notification.Name("spotifyNotificationIdentifier")
-//        
-//        // Register to receive notification
-//        NotificationCenter.default.addObserver(self, selector: #selector(NewReleasesTableViewController.getSpotifyCode), name: notificationName, object: nil)
-//        
-//
-//        let url = "https://accounts.spotify.com/authorize/?client_id=2749e2f97b65434a86f0054d51f2303b&response_type=code&redirect_uri=eshareschallenge://returnAfterLogin&scope=user-read-private%20user-read-email";
-//   
-//        if let url = URL(string: url) {
-//            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-//        }
-        
-        
-        self.getSpotifyCode()
+        self.getSpotifyAuth()
     }
     
-    func getSpotifyCode() {
- 
-//        let dict = notification.object as! NSDictionary
-        
-//        let receivedCode = dict["code"] // code from Spotify
-        
-
-
+    func getSpotifyAuth() {
         
         let clientId = "2749e2f97b65434a86f0054d51f2303b"
         let clientSecret = "0ed59725d79240d3910cfba50d44d545"
@@ -62,7 +46,6 @@ class NewReleasesTableViewController: UITableViewController {
                     if let result = response.result.value {
                         let accessToken = result as! NSDictionary
                         
-                        print("1.) ", accessToken["access_token"])
                         self.getNewReleases(accessToken: accessToken["access_token"] as! String)
                     }
                     
@@ -79,6 +62,9 @@ class NewReleasesTableViewController: UITableViewController {
     
     func getNewReleases( accessToken :String) {
         
+        // initialize tracksArray
+        self.tracksArray = []
+        
         Alamofire.request("https://api.spotify.com/v1/browse/new-releases",
                           method: .get,
                           parameters: [:],
@@ -94,43 +80,54 @@ class NewReleasesTableViewController: UITableViewController {
                         
                         let albums = data["albums"]  as! NSDictionary
                         
-//                        let items = albums["items"]  as! NSArray
-                        
                         if let items = albums["items"] as? [[String:Any]] {
-                            
-                            
+                        
                             for item in items {
                                 
-                                // Extracting meme data
+                                // Extracting track data
                                 let track = Track()
                                 
                                 track.trackName = item["name"] as! String
                                 
                                 let artists = item["artists"]  as! NSArray
+                                
+                                print ("2.) ", artists)
+                                // Getting artist data. Seems like the data comes from the first index of the artists array
                                 let artist = artists[0] as? NSDictionary
                                 track.artistName = artist?["name"] as! String
                                 
+                                // URI
+                                track.uri = artist?["uri"] as! String
+                                
+                                // External URL
+                                let externalURL = artist?["external_urls"] as! NSDictionary
+                                
+                                track.externalURL =  externalURL["spotify"] as! String
                                 
                                 
+                                let images = item["images"]  as! NSArray
                                 
-//                                track.img = item["width"] as! String
+                                // Getting the thumbnail size of the image
+                                let image = images[2] as? NSDictionary
+                                track.img = image?["url"] as! String
                                 
+                                let imageLarge = images[0] as? NSDictionary
+                                track.imgLarge = imageLarge?["url"] as! String
                                 
+                                self.tracksArray.append(track)
+                                
+                                self.tableView.reloadData()
                                 
                             }
-                            
-                            print("2.) ", items)
-
-                            
+                       
                         }
                         
-                        
                     }
-                    
                     
                     break
                     
                 case .failure(_):
+                    // Errors
                     print("2.0) ", response.result.error)
                     break
                 }
@@ -138,9 +135,6 @@ class NewReleasesTableViewController: UITableViewController {
 
         
     }
-
-    
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -151,67 +145,73 @@ class NewReleasesTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.tracksArray.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        
+        let cell:TrackTableViewCell = tableView.dequeueReusableCell(withIdentifier: "trackCell", for: indexPath) as! TrackTableViewCell
 
-        // Configure the cell...
+        let track = self.tracksArray[indexPath.row]
+        
+        cell.trackNameLabel.text = track.trackName
+        cell.artistNameLabel.text = track.artistName
+        
+        if let checkedUrl = URL(string: track.img) {
+            cell.trackImageView.contentMode = .scaleAspectFit
+            downloadImage(url: checkedUrl, trackImageView: cell.trackImageView)
+        }
+        
 
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
+        URLSession.shared.dataTask(with: url) {
+            (data, response, error) in
+            completion(data, response, error)
+            }.resume()
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    func downloadImage(url: URL, trackImageView: UIImageView)  {
+        
+        getDataFromUrl(url: url) { (data, response, error)  in
+            guard let data = data, error == nil else { return }
+            
+            // Async load images
+            DispatchQueue.main.async() { () -> Void in
+                trackImageView.image = UIImage(data: data)
+            }
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+//        self.selectedTrack = self.tracksArray[indexPath.row]
+        self.performSegue(withIdentifier: "trackDetailsSegue", sender: self)
+        
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+   
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "trackDetailsSegue" {
+            let viewController:TrackDetailsViewController = segue.destination as! TrackDetailsViewController
+            let indexPath = self.tableView.indexPathForSelectedRow
+            viewController.selectedTrack = self.tracksArray[(indexPath?.row)!]
+            
+        }
     }
-    */
+    
 
 }

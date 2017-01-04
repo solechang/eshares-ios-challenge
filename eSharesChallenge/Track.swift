@@ -10,9 +10,12 @@ import UIKit
 
 class Track: NSObject {
     
-    var trackName : String = ""
-    var artistName : String = ""
-    var img : String = ""
+    var trackName :String = ""
+    var artistName :String = ""
+    var img :String = ""
+    var imgLarge :String = ""
+    var externalURL :String = ""
+    var uri :String = ""
     
 
 }
