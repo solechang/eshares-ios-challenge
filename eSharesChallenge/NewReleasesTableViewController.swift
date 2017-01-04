@@ -13,9 +13,7 @@ import SwiftyJSON
 class NewReleasesTableViewController: UITableViewController {
     
     var tracksArray: [Track] = []
-    var selectedTrack: Track? = nil
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,6 +21,7 @@ class NewReleasesTableViewController: UITableViewController {
     }
     
     func getSpotifyAuth() {
+        
         
         let clientId = "2749e2f97b65434a86f0054d51f2303b"
         let clientSecret = "0ed59725d79240d3910cfba50d44d545"
@@ -91,7 +90,6 @@ class NewReleasesTableViewController: UITableViewController {
                                 
                                 let artists = item["artists"]  as! NSArray
                                 
-                                print ("2.) ", artists)
                                 // Getting artist data. Seems like the data comes from the first index of the artists array
                                 let artist = artists[0] as? NSDictionary
                                 track.artistName = artist?["name"] as! String
@@ -103,7 +101,6 @@ class NewReleasesTableViewController: UITableViewController {
                                 let externalURL = artist?["external_urls"] as! NSDictionary
                                 
                                 track.externalURL =  externalURL["spotify"] as! String
-                                
                                 
                                 let images = item["images"]  as! NSArray
                                 
@@ -193,15 +190,10 @@ class NewReleasesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        self.selectedTrack = self.tracksArray[indexPath.row]
         self.performSegue(withIdentifier: "trackDetailsSegue", sender: self)
         
     }
    
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

@@ -12,7 +12,7 @@ class Track: NSObject {
     
     var trackName :String = ""
     var artistName :String = ""
-    var img :String = ""
+    var img :String = "" //thumbnail
     var imgLarge :String = ""
     var externalURL :String = ""
     var uri :String = ""

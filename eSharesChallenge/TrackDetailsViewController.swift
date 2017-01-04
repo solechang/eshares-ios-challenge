@@ -16,6 +16,7 @@ class TrackDetailsViewController: UIViewController {
     
     @IBOutlet weak var songNameLabel: UILabel!
     @IBOutlet weak var artistNameLabel: UILabel!
+    
     var selectedTrack: Track? = nil
 
     override func viewDidLoad() {
@@ -30,9 +31,10 @@ class TrackDetailsViewController: UIViewController {
         self.songNameLabel.text = self.selectedTrack?.trackName
         self.artistNameLabel.text = self.selectedTrack?.artistName
         
+        // Spotify Button to match UI
         self.spotifyButton.layer.cornerRadius = 10
         
-        
+        // Load Image
         if let checkedUrl = URL(string: (self.selectedTrack?.imgLarge)!) {
             self.trackImageView.contentMode = .scaleAspectFit
             downloadImage(url: checkedUrl, trackImageView: self.trackImageView)
@@ -66,9 +68,12 @@ class TrackDetailsViewController: UIViewController {
     }
     
     @IBAction func spotifyButtonPressed(_ sender: AnyObject) {
+    //let url = "spotify://\((self.selectedTrack?.uri)!)"
 
-//        let url = "spotify://\((self.selectedTrack?.uri)!)"
-//                print("4.) ", url)
+    
+        // Cannot open spotify app because app is not installed through simulator
+        // However web is opened with external link
+        // I can open Spotify app with "spotify://\((self.selectedTrack?.uri)!)" if Spotify was installed
         UIApplication.shared.open(URL(string: (self.selectedTrack?.externalURL)! )!, options: [:], completionHandler: nil)
         
     }
