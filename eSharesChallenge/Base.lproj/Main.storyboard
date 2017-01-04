@@ -92,11 +92,17 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMD-mT-RPV">
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="999" constant="50" id="4bt-2c-L0Y"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ht-Ba-U7f">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="T1s-ca-04Y"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -118,8 +124,9 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="HfC-vs-zSf" firstAttribute="top" secondItem="7ht-Ba-U7f" secondAttribute="bottom" constant="65" id="AUN-f5-W2j"/>
                             <constraint firstItem="td5-rI-SsT" firstAttribute="centerX" secondItem="f32-N8-6L7" secondAttribute="centerX" id="Iux-2t-WAm"/>
-                            <constraint firstItem="f32-N8-6L7" firstAttribute="width" secondItem="YSY-D2-Mqh" secondAttribute="width" id="LZ8-EP-HV4"/>
+                            <constraint firstItem="f32-N8-6L7" firstAttribute="width" relation="lessThanOrEqual" secondItem="YSY-D2-Mqh" secondAttribute="width" id="LZ8-EP-HV4"/>
                             <constraint firstItem="7ht-Ba-U7f" firstAttribute="top" secondItem="VMD-mT-RPV" secondAttribute="bottom" constant="7" id="QoN-nF-tsl"/>
                             <constraint firstItem="VMD-mT-RPV" firstAttribute="centerX" secondItem="YSY-D2-Mqh" secondAttribute="centerX" id="TuO-bI-MWS"/>
                             <constraint firstItem="VMD-mT-RPV" firstAttribute="leading" secondItem="YSY-D2-Mqh" secondAttribute="leadingMargin" constant="30" id="VwH-8h-Tl1"/>
@@ -131,7 +138,6 @@
                             <constraint firstItem="7ht-Ba-U7f" firstAttribute="centerX" secondItem="YSY-D2-Mqh" secondAttribute="centerX" id="j27-l8-F87"/>
                             <constraint firstItem="VMD-mT-RPV" firstAttribute="top" secondItem="td5-rI-SsT" secondAttribute="bottom" constant="17" id="jRG-8I-fj0"/>
                             <constraint firstItem="td5-rI-SsT" firstAttribute="bottom" secondItem="f32-N8-6L7" secondAttribute="bottom" constant="15" id="kUN-xo-TJk"/>
-                            <constraint firstItem="HfC-vs-zSf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="7ht-Ba-U7f" secondAttribute="bottom" constant="15" id="rcE-PS-9Cw"/>
                         </constraints>
                     </view>
                     <connections>
@@ -143,7 +149,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tS9-3P-35D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="856.875" y="7.5"/>
+            <point key="canvasLocation" x="856.875" y="7.394366197183099"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8cn-rQ-ADO">
