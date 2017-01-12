@@ -16,13 +16,20 @@ class NewReleasesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+  
+        self.setUpView()
         
+        self.getSpotifyAuth()
+    }
+    
+    func setUpView() {
+        
+        // Hide table view cells
+        self.tableView.tableFooterView = UIView()
         
         // Navigationbar text color
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
-        
-        self.getSpotifyAuth()
     }
     
     func getSpotifyAuth() {
@@ -87,33 +94,23 @@ class NewReleasesTableViewController: UITableViewController {
                         
                             for item in items {
                                 
-                                // Extracting track data
-                                let track = Track()
-                                
-                                track.trackName = item["name"] as! String
-                                
+                                // Extracting new release track data
                                 let artists = item["artists"]  as! NSArray
                                 
                                 // Getting artist data. Seems like the data comes from the first index of the artists array
                                 let artist = artists[0] as? NSDictionary
-                                track.artistName = artist?["name"] as! String
-                                
-                                // URI
-                                track.uri = artist?["uri"] as! String
                                 
                                 // External URL
                                 let externalURL = artist?["external_urls"] as! NSDictionary
-                                
-                                track.externalURL =  externalURL["spotify"] as! String
                                 
                                 let images = item["images"]  as! NSArray
                                 
                                 // Getting the thumbnail size of the image
                                 let image = images[2] as? NSDictionary
-                                track.img = image?["url"] as! String
                                 
                                 let imageLarge = images[0] as? NSDictionary
-                                track.imgLarge = imageLarge?["url"] as! String
+  
+                                let track = Track(trackName: item["name"] as? String, artistName: artist?["name"] as? String, img: image?["url"] as? String, imgLarge: imageLarge?["url"] as? String, externalURL: externalURL["spotify"] as? String, uri: artist?["uri"] as? String)
                                 
                                 self.tracksArray.append(track)
                                 
@@ -168,7 +165,6 @@ class NewReleasesTableViewController: UITableViewController {
             cell.trackImageView.contentMode = .scaleAspectFit
             downloadImage(url: checkedUrl, trackImageView: cell.trackImageView)
         }
-        
 
         return cell
     }
