@@ -86,6 +86,7 @@ class NewReleasesTableViewController: UITableViewController {
                 case .success(_):
                     
                     if let result = response.result.value {
+                        // Extracting track data
                         let data = result as! NSDictionary
                         
                         let albums = data["albums"]  as! NSDictionary
@@ -94,23 +95,34 @@ class NewReleasesTableViewController: UITableViewController {
                         
                             for item in items {
                                 
-                                // Extracting new release track data
+                                // Track name
+                                let trackName = item["name"] as? String
+
                                 let artists = item["artists"]  as! NSArray
                                 
                                 // Getting artist data. Seems like the data comes from the first index of the artists array
                                 let artist = artists[0] as? NSDictionary
-                                
-                                // External URL
-                                let externalURL = artist?["external_urls"] as! NSDictionary
+                                let artistName = artist?["name"] as? String
                                 
                                 let images = item["images"]  as! NSArray
                                 
                                 // Getting the thumbnail size of the image
                                 let image = images[2] as? NSDictionary
+                                let img = image?["url"] as? String
                                 
+                                // Large Img
                                 let imageLarge = images[0] as? NSDictionary
+                                let imgLarge = imageLarge?["url"] as? String
+                                
+                                // External URL
+                                let externalURL = artist?["external_urls"] as! NSDictionary
+                                let external =  externalURL["spotify"] as? String
+                                
+                                // URI
+                                let uri = artist?["uri"] as? String
+                                
   
-                                let track = Track(trackName: item["name"] as? String, artistName: artist?["name"] as? String, img: image?["url"] as? String, imgLarge: imageLarge?["url"] as? String, externalURL: externalURL["spotify"] as? String, uri: artist?["uri"] as? String)
+                                let track = Track(trackName: trackName, artistName: artistName, img: img, imgLarge: imgLarge, externalURL: external, uri: uri)
                                 
                                 self.tracksArray.append(track)
                                 
@@ -126,7 +138,7 @@ class NewReleasesTableViewController: UITableViewController {
                     
                 case .failure(_):
                     // Errors
-                    print("2.0) ", response.result.error)
+                    print( response.result.error)
                     break
                 }
         }

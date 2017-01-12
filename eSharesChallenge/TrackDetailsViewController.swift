@@ -72,9 +72,8 @@ class TrackDetailsViewController: UIViewController {
     }
     
     @IBAction func spotifyButtonPressed(_ sender: AnyObject) {
-    //let url = "spotify://\((self.selectedTrack?.uri)!)"
+        //let url = "spotify://\((self.selectedTrack?.uri)!)"
 
-    
         // Cannot open spotify app because app is not installed through simulator
         // However web is opened with external link
         // I can open Spotify app with "spotify://\((self.selectedTrack?.uri)!)" if Spotify was installed
